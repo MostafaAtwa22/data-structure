@@ -1,0 +1,2 @@
+    q.pop();
+    q.print();
