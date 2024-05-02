@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/programming/Programming Basics/Ds Codes/Stack",
-      "program": "d:/programming/Programming Basics/Ds Codes/Stack/build/Debug/outDebug",
+      "cwd": "d:/programming/Programming Basics/data-structure/6- Heap",
+      "program": "d:/programming/Programming Basics/data-structure/6- Heap/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -21,7 +21,6 @@ struct node
 template<typename T>
 class BST
 {
-    
 private:
     int         Height_diameter(node<T> * root, int& diameter);
     node<T> *   ancestor_search(node<T> * root, T element);

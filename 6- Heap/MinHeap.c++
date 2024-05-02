@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cmath>
 using namespace std;
 
 class MinHeap
@@ -7,15 +8,23 @@ private:
   int *arr;
   int size;
   int length;
+  void MinHeapify(int index);
+  void DecreaseKey(int indexe);
 public:
   MinHeap(int size);
+  bool Empty();
+  bool Full();
+  int Size();
   int parent(int child);
   int left(int parent);
   int right(int parent);
+  void Push(int element);
+  int Pop();
+  void DeleteKey(int index);
   int top();  
+  int Height();
   void print();
-  void Insert(int element);
-};
+}; 
 
 MinHeap::MinHeap(int size)
 {
@@ -24,7 +33,22 @@ MinHeap::MinHeap(int size)
   arr = new int[size];
 }
 
-void MinHeap::Insert(int element)
+bool MinHeap::Empty()
+{
+  return length == 0;
+}
+
+bool MinHeap::Full()
+{
+  return length == size;
+}
+
+int MinHeap::Size()
+{
+  return length;
+}
+
+void MinHeap::Push(int element)
 {
   if (length == size)
   {
@@ -40,6 +64,62 @@ void MinHeap::Insert(int element)
     swap(arr[i], arr[parent(i)]);
     i = parent(i);
   }
+}
+
+void MinHeap::MinHeapify(int index)
+{
+  int l = left(index);
+  int r = right(index);
+  int Min = index;
+  if (l < length && arr[l] < arr[Min])
+    Min = l;
+  if (r < length && arr[r] < arr[Min])
+    Min = r;
+  if (Min != index)
+  {
+    swap(arr[index], arr[Min]);
+    MinHeapify(Min); // make this operation again to make the min heap again
+  }
+}
+
+int MinHeap::Pop()
+{
+  if (Empty())
+  {
+    cout << "Out Of Range : Heap is Empty\n";
+    return INT_MAX;
+  }
+  else if (length == 1)
+  {
+    length--;
+    return arr[0]; 
+  }
+  int root = arr[0];
+  arr[0] = arr[length - 1];
+  length--;
+  MinHeapify(0); // make it min heap 
+  return root;
+}
+
+void MinHeap::DecreaseKey(int index)
+{
+  arr[index] = INT_MIN;
+  while(index != 0 && arr[index] < arr[parent(index)])
+  {
+    swap(arr[index], arr[parent(index)]);
+    index = parent(index);
+  }
+}
+
+void MinHeap::DeleteKey(int index)
+{
+  if (index < 0 || index >= length)
+  {
+    cout << "OverFlow !! Out Of Range !!";
+    return;
+  }
+  DecreaseKey(index);
+  Pop();
 }
 
 int MinHeap::parent(int child)
@@ -60,15 +140,25 @@ int MinHeap::right(int parent)
 
 int MinHeap::top()
 {
+  if (Empty())
+  {
+    cout << "Out Of Range : Heap is Empty\n";
+    return -1;
+  }
   return arr[0];
 }
 
 void MinHeap::print()
 {
   cout << "Heap: [ ";
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < length; i++)
     cout << arr[i] << ' ';
   cout << "]\n";
+}
+
+int MinHeap::Height()
+{
+  return ceil(log2(size + 1));
 }
 
 int main()
@@ -82,8 +172,24 @@ int main()
   {
     int x;
     cin >> x;
-    MH.Insert(x);
+    MH.Push(x);
   }
   MH.print();
   cout << "Top : " << MH.top() << '\n';
+
+  cout << "Enter The index u want to delete : ";
+  int ind;
+  cin >> ind;
+  MH.DeleteKey(ind);
+
+  MH.print();
+  cout << "Size : " << MH.Size() << '\n';
+
+  cout << "Print Using Pop !!\n";
+  while(!MH.Empty())
+  {
+    cout << MH.top() << ' ';
+    MH.Pop();
+  }
+  cout << "\n";
 }

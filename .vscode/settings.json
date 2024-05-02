@@ -38,7 +38,10 @@
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
   "C_Cpp_Runner.includePaths": [],
-  "C_Cpp_Runner.includeSearch": ["*", "**/*"],
+  "C_Cpp_Runner.includeSearch": [
+    "*",
+    "**/*"
+  ],
   "C_Cpp_Runner.excludeSearch": [
     "**/build",
     "**/build/**",
@@ -104,16 +107,16 @@
   "C_Cpp.errorSquiggles": "disabled",
   "rainbowString": {
     "extensions": [
-        ".cs",
-        ".csx",
-        ".fs",
-        ".fsx",
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx",
-        ".csproj",
-        ".fsproj"
+      ".cs",
+      ".csx",
+      ".fs",
+      ".fsx",
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".csproj",
+      ".fsproj"
     ]
   },
   "cSpell.words": [
